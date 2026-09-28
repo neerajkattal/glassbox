@@ -114,6 +114,119 @@ class Tensor:
     def __rsub__(self, other: Tensor | ArrayLike) -> Tensor:
         return self._wrap(other) - self
 
+    def __pow__(self, exponent: float) -> Tensor:
+        out = self._child(self.data**exponent, (self,), f"pow{exponent}")
+
+        def _backward() -> None:
+            self._accumulate(out.grad * exponent * self.data ** (exponent - 1))
+
+        out._backward = _backward
+        return out
+
+    def __truediv__(self, other: Tensor | ArrayLike) -> Tensor:
+        return self * self._wrap(other) ** -1.0
+
+    def __rtruediv__(self, other: Tensor | ArrayLike) -> Tensor:
+        return self._wrap(other) * self**-1.0
+
+    def __matmul__(self, other: Tensor | ArrayLike) -> Tensor:
+        other = self._wrap(other)
+        out = self._child(self.data @ other.data, (self, other), "matmul")
+
+        def _backward() -> None:
+            self._accumulate(out.grad @ other.data.T)
+            other._accumulate(self.data.T @ out.grad)
+
+        out._backward = _backward
+        return out
+
+    # -------------------------------------------------------------- reductions
+    def sum(self, axis: int | None = None, keepdims: bool = False) -> Tensor:
+        out = self._child(self.data.sum(axis=axis, keepdims=keepdims), (self,), "sum")
+
+        def _backward() -> None:
+            grad = out.grad
+            if axis is not None and not keepdims:
+                grad = np.expand_dims(grad, axis)
+            self._accumulate(np.broadcast_to(grad, self.data.shape))
+
+        out._backward = _backward
+        return out
+
+    def mean(self, axis: int | None = None, keepdims: bool = False) -> Tensor:
+        count = self.data.size if axis is None else self.data.shape[axis]
+        return self.sum(axis=axis, keepdims=keepdims) * (1.0 / count)
+
+    # ------------------------------------------------------------------ shape
+    def reshape(self, *shape: int) -> Tensor:
+        out = self._child(self.data.reshape(*shape), (self,), "reshape")
+
+        def _backward() -> None:
+            self._accumulate(out.grad.reshape(self.data.shape))
+
+        out._backward = _backward
+        return out
+
+    @property
+    def T(self) -> Tensor:  # noqa: N802 - mirrors the NumPy attribute
+        out = self._child(self.data.T, (self,), "transpose")
+
+        def _backward() -> None:
+            self._accumulate(out.grad.T)
+
+        out._backward = _backward
+        return out
+
+    # ------------------------------------------------------------ elementwise
+    def exp(self) -> Tensor:
+        value = np.exp(self.data)
+        out = self._child(value, (self,), "exp")
+
+        def _backward() -> None:
+            self._accumulate(out.grad * value)
+
+        out._backward = _backward
+        return out
+
+    def log(self) -> Tensor:
+        out = self._child(np.log(self.data), (self,), "log")
+
+        def _backward() -> None:
+            self._accumulate(out.grad / self.data)
+
+        out._backward = _backward
+        return out
+
+    def relu(self) -> Tensor:
+        mask = self.data > 0
+        out = self._child(self.data * mask, (self,), "relu")
+
+        def _backward() -> None:
+            self._accumulate(out.grad * mask)
+
+        out._backward = _backward
+        return out
+
+    def sigmoid(self) -> Tensor:
+        value = 1.0 / (1.0 + np.exp(-np.clip(self.data, -500, 500)))
+        out = self._child(value, (self,), "sigmoid")
+
+        def _backward() -> None:
+            self._accumulate(out.grad * value * (1.0 - value))
+
+        out._backward = _backward
+        return out
+
+    def tanh(self) -> Tensor:
+        value = np.tanh(self.data)
+        out = self._child(value, (self,), "tanh")
+
+        def _backward() -> None:
+            self._accumulate(out.grad * (1.0 - value**2))
+
+        out._backward = _backward
+        return out
+
     # ---------------------------------------------------------------- autograd
     def backward(self, grad: np.ndarray | None = None) -> None:
         """Back-propagate from this tensor through the whole graph."""
