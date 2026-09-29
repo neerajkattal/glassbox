@@ -84,3 +84,12 @@ def load_mnist(cache_dir: Path) -> Mnist:
         train=_split(_load_file(cache_dir, "train_images"), _load_file(cache_dir, "train_labels")),
         test=_split(_load_file(cache_dir, "test_images"), _load_file(cache_dir, "test_labels")),
     )
+
+
+if __name__ == "__main__":
+    import sys
+
+    logging.basicConfig(level=logging.INFO)
+    target = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(".data/mnist")
+    data = load_mnist(target)
+    print(f"MNIST ready in {target}: {len(data.train)} train / {len(data.test)} test digits")
