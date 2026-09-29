@@ -29,9 +29,7 @@ def numerical_grad(fn: Callable[[], Tensor], param: Tensor, eps: float = 1e-6) -
     return grad
 
 
-def check_gradients(
-    fn: Callable[[], Tensor], params: Sequence[Tensor], eps: float = 1e-6
-) -> float:
+def check_gradients(fn: Callable[[], Tensor], params: Sequence[Tensor], eps: float = 1e-6) -> float:
     """Return the worst relative error between analytic and numerical gradients."""
     for p in params:
         p.zero_grad()
