@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import threading
 import time
 import uuid
 from dataclasses import asdict, dataclass
@@ -60,11 +61,18 @@ class TrainingSession:
         self.eval_labels = data.test.labels[:eval_size]
         self.hyperparams = Hyperparams()
         self.last_used = time.monotonic()
+        # The stream trains in a worker thread while predict/reset may arrive
+        # from HTTP requests; the lock keeps them from seeing half-updated knobs.
+        self._lock = threading.RLock()
         self.reset()
 
     # ----------------------------------------------------------------- control
     def reset(self) -> None:
         """Throw the robot's brain away and start from random knobs."""
+        with self._lock:
+            self._reset()
+
+    def _reset(self) -> None:
         self.model = build_digit_net(self.seed)
         self.optimizer = SGD(self.model.parameters(), lr=self.hyperparams.learning_rate)
         self.sampler = BatchSampler(self.data.train, np.random.default_rng(self.seed))
@@ -90,6 +98,11 @@ class TrainingSession:
     def train(self, steps: int) -> Snapshot:
         """Run ``steps`` gradient-descent steps and report how it went."""
         self.touch()
+        with self._lock:
+            self._train(steps)
+            return self.snapshot()
+
+    def _train(self, steps: int) -> None:
         for _ in range(steps):
             if self.exploded:
                 break
@@ -114,7 +127,6 @@ class TrainingSession:
             if self.smoothed_loss > EXPLODED_LOSS:
                 self.exploded = True
         self._accuracy = self._evaluate()
-        return self.snapshot()
 
     def _evaluate(self) -> float:
         logits = self.model(Tensor(self.eval_images)).data
@@ -139,6 +151,10 @@ class TrainingSession:
     def predict(self, pixels: np.ndarray) -> Prediction:
         """Show one drawing to the robot and record every bulb along the way."""
         self.touch()
+        with self._lock:
+            return self._predict(pixels)
+
+    def _predict(self, pixels: np.ndarray) -> Prediction:
         x = Tensor(np.asarray(pixels, dtype=np.float64).reshape(1, INPUT_SIZE))
         outputs = self.model.trace(x)
         # The sigmoid outputs are the hidden "bulbs", each glowing between 0 and 1.
@@ -157,5 +173,6 @@ class TrainingSession:
 
     def first_layer_weights(self) -> list[list[float]]:
         """The 784 knobs feeding each first-layer bulb: what pattern it looks for."""
-        weight = self.model.layers[0].weight.data  # (784, hidden)
+        with self._lock:
+            weight = self.model.layers[0].weight.data.copy()  # (784, hidden)
         return [[round(float(w), 4) for w in column] for column in weight.T]
