@@ -6,7 +6,9 @@ from glassbox.training.session import TrainingSession
 
 @pytest.fixture
 def registry(tiny_mnist):
-    return SessionRegistry(lambda: TrainingSession(tiny_mnist, seed=0, eval_size=50), max_sessions=2)
+    return SessionRegistry(
+        lambda: TrainingSession(tiny_mnist, seed=0, eval_size=50), max_sessions=2
+    )
 
 
 def test_create_and_get(registry):
