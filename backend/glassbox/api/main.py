@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from glassbox import __version__
 from glassbox.api.config import Settings, get_settings
-from glassbox.api.routes import health, sessions
+from glassbox.api.routes import health, sessions, stream
 from glassbox.api.state import LazyDataset, build_registry
 from glassbox.data.mnist import Mnist, load_mnist
 
@@ -38,6 +38,7 @@ def create_app(
 
     app.include_router(health.router, prefix="/api")
     app.include_router(sessions.router, prefix="/api")
+    app.include_router(stream.router, prefix="/api")
     return app
 
 
