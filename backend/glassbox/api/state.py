@@ -29,7 +29,7 @@ class LazyDataset:
 
 def build_registry(dataset: LazyDataset, max_sessions: int, idle_seconds: float) -> SessionRegistry:
     return SessionRegistry(
-        factory=lambda: TrainingSession(dataset.get()),
+        factory=lambda seed=None: TrainingSession(dataset.get(), seed=seed),
         max_sessions=max_sessions,
         idle_seconds=idle_seconds,
     )

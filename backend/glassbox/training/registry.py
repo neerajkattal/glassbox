@@ -16,7 +16,7 @@ class SessionNotFound(KeyError):
 class SessionRegistry:
     def __init__(
         self,
-        factory: Callable[[], TrainingSession],
+        factory: Callable[..., TrainingSession],
         max_sessions: int = 50,
         idle_seconds: float = 30 * 60,
     ) -> None:
@@ -26,8 +26,8 @@ class SessionRegistry:
         self.max_sessions = max_sessions
         self.idle_seconds = idle_seconds
 
-    def create(self) -> TrainingSession:
-        session = self._factory()
+    def create(self, **options: object) -> TrainingSession:
+        session = self._factory(**options)
         with self._lock:
             self._expire_idle()
             if len(self._sessions) >= self.max_sessions:
