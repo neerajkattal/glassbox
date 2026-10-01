@@ -1,5 +1,5 @@
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 // In development the API runs on :8000; proxying keeps the browser on one origin.
 export default defineConfig({
