@@ -171,7 +171,6 @@ export function DigitIsland({ onHome }: Props) {
   const openBulb = async (index: number) => {
     setNeuron(index);
     say(format(t.feed.neuron, { n: index + 1 }));
-    mission.dispatch({ type: "neuronOpened" });
     if (session) setWeights((await api.weights(session.id)).neurons);
   };
 
@@ -273,6 +272,8 @@ export function DigitIsland({ onHome }: Props) {
           onClose={() => {
             setNeuron(null);
             setWeights(null);
+            // Name the idea only after the learner has looked at the knobs.
+            mission.dispatch({ type: "neuronOpened" });
           }}
         />
       )}
