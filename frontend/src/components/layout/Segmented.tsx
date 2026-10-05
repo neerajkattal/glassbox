@@ -1,6 +1,8 @@
 interface Option<T extends string> {
   value: T;
   label: string;
+  /** Shown instead of `label` on narrow screens. */
+  short?: string;
   title?: string;
 }
 
@@ -23,13 +25,21 @@ export function Segmented<T extends string>({ label, value, options, onChange }:
             type="button"
             role="radio"
             aria-checked={active}
-            title={opt.title}
+            title={opt.title ?? opt.label}
+            aria-label={opt.label}
             onClick={() => onChange(opt.value)}
             className={`rounded-xl px-2.5 py-1.5 text-xs font-extrabold transition sm:px-3 sm:text-sm ${
               active ? "bg-white text-brand-700 shadow-sm" : "text-brand-600/70 hover:text-brand-700"
             }`}
           >
-            {opt.label}
+            {opt.short ? (
+              <>
+                <span className="sm:hidden">{opt.short}</span>
+                <span className="hidden sm:inline">{opt.label}</span>
+              </>
+            ) : (
+              opt.label
+            )}
           </button>
         );
       })}
