@@ -95,7 +95,7 @@ export function DrawPad({ onAsk, busy, highlight, showPreview }: Props) {
         <span className="text-xs text-gray-500">{t.draw.hint}</span>
       </header>
 
-      <div className="flex items-end gap-3">
+      <div className="relative mx-auto w-full max-w-[280px]">
         <canvas
           ref={canvas}
           width={CANVAS_SIZE}
@@ -104,14 +104,18 @@ export function DrawPad({ onAsk, busy, highlight, showPreview }: Props) {
           onPointerMove={onMove}
           onPointerUp={onUp}
           onPointerCancel={onUp}
-          className="aspect-square w-full max-w-[280px] touch-none rounded-2xl border-2 border-dashed border-brand-100 bg-white"
+          className="aspect-square w-full touch-none rounded-2xl border-2 border-dashed border-brand-100 bg-white"
           style={{
             backgroundImage:
               "radial-gradient(circle at center, rgb(99 102 241 / 0.06) 0 35%, transparent 36%)",
           }}
           aria-label={t.draw.hint}
         />
-        {showPreview && <PixelPreview pixels={pixels} label={t.draw.sees} />}
+        {showPreview && (
+          <div className="pointer-events-none absolute right-2 top-2 rounded-xl bg-white/90 p-1.5 shadow-card">
+            <PixelPreview pixels={pixels} size={56} label={t.draw.sees} />
+          </div>
+        )}
       </div>
 
       {warning && <p className="text-sm font-semibold text-rose-600">{t.draw.empty}</p>}
