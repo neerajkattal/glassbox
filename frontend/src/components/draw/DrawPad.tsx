@@ -90,8 +90,8 @@ export function DrawPad({ onAsk, busy, highlight, showPreview }: Props) {
 
   return (
     <section className="card flex flex-col gap-3">
-      <header className="flex items-baseline justify-between">
-        <h2 className="text-lg font-extrabold">✏️ {t.draw.title}</h2>
+      <header className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+        <h2 className="whitespace-nowrap text-lg font-extrabold">✏️ {t.draw.title}</h2>
         <span className="text-xs text-gray-500">{t.draw.hint}</span>
       </header>
 
