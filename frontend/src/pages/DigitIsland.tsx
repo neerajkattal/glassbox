@@ -129,6 +129,11 @@ export function DigitIsland({ onHome }: Props) {
     }
   }, [snapshot, running]);
 
+  // Mission accomplished: stop training so the celebration is not a moving target.
+  useEffect(() => {
+    if (mission.step === "done" && running) send({ action: "pause" });
+  }, [mission.step, running, send]);
+
   // ------------------------------------------------------------------ controls
   const play = () => {
     send({
