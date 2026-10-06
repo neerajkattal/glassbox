@@ -1,5 +1,5 @@
 import { TopBar } from "./components/layout/TopBar";
-import { DONE_KEY } from "./hooks/useMission";
+import { DONE_KEY, storedConcepts } from "./hooks/useMission";
 import { useHashRoute } from "./hooks/useHashRoute";
 import { useI18n } from "./i18n";
 import { readStored } from "./lib/storage";
@@ -22,7 +22,7 @@ export default function App() {
         <DigitIsland onHome={goHome} />
       ) : (
         <HomePage
-          started={(readStored("digit:step") ?? "meet") !== "meet"}
+          started={storedConcepts().length > 0}
           digitDone={readStored(DONE_KEY) === "1"}
           onStart={() => navigate("digit-island")}
         />
