@@ -17,7 +17,7 @@ formula, without boring someone preparing for an interview.
   much detail is shown, not what is shown.
 - **Everyday words.** Neurons are bulbs, weights are knobs, the loss is the
   "how wrong" meter, and a too-high learning rate is "Break it!".
-- **Hinglish by default, English one tap away.** Translations are typed so a
+- **English by default, Hinglish one tap away.** Translations are typed so a
   missing string fails the build.
 
 ## Consequences

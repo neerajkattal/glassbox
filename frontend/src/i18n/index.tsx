@@ -29,7 +29,7 @@ const I18nContext = createContext<I18n | null>(null);
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>(() => {
     const stored = readStored("lang");
-    return stored === "en" || stored === "hinglish" ? stored : "hinglish";
+    return stored === "en" || stored === "hinglish" ? stored : "en";
   });
 
   const setLang = useCallback((next: Language) => {
