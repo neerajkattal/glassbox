@@ -16,7 +16,7 @@ export function GuessCard({ prediction, showNumbers }: Props) {
       <h2 className="text-lg font-extrabold">💭 {t.guess.title}</h2>
       {prediction ? (
         <>
-          <div key={`${prediction.prediction}-${confidence}`} className="flex animate-pop items-center gap-4">
+          <div key={prediction.prediction} className="flex animate-pop items-center gap-4">
             <span className="grid h-16 w-16 place-items-center rounded-2xl bg-brand-600 text-4xl font-extrabold text-white">
               {prediction.prediction}
             </span>
