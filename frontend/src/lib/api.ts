@@ -1,6 +1,10 @@
 import type { Prediction, SessionInfo, Snapshot, Weights } from "./types";
 
-const BASE = "/api";
+// In development Vite proxies /api to the local backend. In production the
+// frontend and API live on different hosts, so VITE_API_URL points at the API.
+const API_ORIGIN = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
+const API_PATH = "/api";
+const BASE = `${API_ORIGIN}${API_PATH}`;
 
 export class ApiError extends Error {
   constructor(
@@ -36,6 +40,8 @@ export const api = {
 };
 
 export function streamUrl(sessionId: string): string {
+  const path = `${API_PATH}/sessions/${sessionId}/stream`;
+  if (API_ORIGIN) return API_ORIGIN.replace(/^http/, "ws") + path;
   const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-  return `${proto}//${window.location.host}${BASE}/sessions/${sessionId}/stream`;
+  return `${proto}//${window.location.host}${path}`;
 }
