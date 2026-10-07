@@ -21,3 +21,6 @@ frontend/dist/
 
 # Env
 .env
+
+# TypeScript incremental build info
+*.tsbuildinfo
