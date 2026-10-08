@@ -37,18 +37,18 @@ export function Robot({ mood, size = 88 }: Props) {
       aria-label="Bit the robot"
       className={mood === "dizzy" ? "animate-wiggle" : undefined}
     >
-      <line x1="44" y1="6" x2="44" y2="18" stroke="#6366f1" strokeWidth="3" />
+      <line x1="44" y1="6" x2="44" y2="18" stroke="#22315a" strokeWidth="3" />
       <circle cx="44" cy="6" r="5" fill={mood === "excited" ? "#f59e0b" : "#fbbf24"} />
-      <rect x="10" y="18" width="68" height="56" rx="20" fill="#6366f1" />
-      <rect x="16" y="24" width="56" height="44" rx="15" fill="#eef2ff" />
+      <rect x="10" y="18" width="68" height="56" rx="20" fill="#22315a" />
+      <rect x="16" y="24" width="56" height="44" rx="15" fill="#eef1f6" />
       {eyes}
       <g stroke="#1f2937" strokeWidth="3" strokeLinecap="round" fill="none">
         {mouth}
       </g>
       <circle cx="22" cy="52" r="3.5" fill="#fca5a5" opacity="0.7" />
       <circle cx="66" cy="52" r="3.5" fill="#fca5a5" opacity="0.7" />
-      <rect x="3" y="38" width="7" height="16" rx="3.5" fill="#818cf8" />
-      <rect x="78" y="38" width="7" height="16" rx="3.5" fill="#818cf8" />
+      <rect x="3" y="38" width="7" height="16" rx="3.5" fill="#6e7fa6" />
+      <rect x="78" y="38" width="7" height="16" rx="3.5" fill="#6e7fa6" />
     </svg>
   );
 }

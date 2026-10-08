@@ -8,6 +8,15 @@
   }
   body {
     @apply bg-paper font-sans text-ink antialiased;
+    /* Faint graph-paper grid: a lab notebook for experiments. */
+    background-image: linear-gradient(rgb(23 34 64 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(23 34 64 / 0.035) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
   }
   :focus-visible {
     @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-paper;
