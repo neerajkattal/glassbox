@@ -1,3 +1,4 @@
+import { Activity } from "lucide-react";
 import { useI18n } from "../../i18n";
 import type { HistoryPoint } from "../../hooks/useTraining";
 
@@ -16,7 +17,7 @@ export function LossChart({ history }: Props) {
   if (history.length < 2) {
     return (
       <section className="card">
-        <h2 className="text-lg font-extrabold">📈 {t.chart.title}</h2>
+        <h2 className="flex items-center gap-2 text-lg font-extrabold"><Activity className="h-5 w-5 shrink-0 text-brand-500" aria-hidden /> {t.chart.title}</h2>
         <p className="py-8 text-center text-gray-400">{t.chart.empty}</p>
       </section>
     );
@@ -35,7 +36,7 @@ export function LossChart({ history }: Props) {
   return (
     <section className="card">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-extrabold">📈 {t.chart.title}</h2>
+        <h2 className="flex items-center gap-2 text-lg font-extrabold"><Activity className="h-5 w-5 shrink-0 text-brand-500" aria-hidden /> {t.chart.title}</h2>
         <div className="flex gap-3 text-xs font-bold">
           <span className="text-rose-500">━ {t.chart.loss}</span>
           <span className="text-emerald-600">━ {t.chart.accuracy}</span>

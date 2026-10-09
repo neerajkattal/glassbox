@@ -1,3 +1,4 @@
+import { Bot, Pencil } from "lucide-react";
 import { useCallback, useRef, useState, type PointerEvent } from "react";
 
 import { useI18n } from "../../i18n";
@@ -91,7 +92,7 @@ export function DrawPad({ onAsk, busy, highlight, showPreview }: Props) {
   return (
     <section className="card flex flex-col gap-3">
       <header className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-        <h2 className="whitespace-nowrap text-lg font-extrabold">✏️ {t.draw.title}</h2>
+        <h2 className="flex items-center gap-2 whitespace-nowrap text-lg font-extrabold"><Pencil className="h-5 w-5 shrink-0 text-brand-500" aria-hidden /> {t.draw.title}</h2>
         <span className="text-xs text-gray-500">{t.draw.hint}</span>
       </header>
 
@@ -127,7 +128,7 @@ export function DrawPad({ onAsk, busy, highlight, showPreview }: Props) {
           onClick={ask}
           disabled={busy}
         >
-          🤖 {t.draw.ask}
+          <Bot className="h-4 w-4" aria-hidden /> {t.draw.ask}
         </button>
         <button type="button" className="btn-soft" onClick={clear} disabled={!hasInk}>
           {t.draw.clear}

@@ -1,3 +1,4 @@
+import { Brain, Lock } from "lucide-react";
 import { useI18n } from "../../i18n";
 import type { Prediction } from "../../lib/types";
 import { PixelPreview } from "../draw/PixelPreview";
@@ -40,9 +41,7 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
   if (locked) {
     return (
       <section className="card flex min-h-48 flex-col items-center justify-center gap-2 text-center">
-        <span className="text-4xl" aria-hidden>
-          🔒
-        </span>
+        <Lock className="h-9 w-9 text-brand-400" aria-hidden />
         <h2 className="text-lg font-extrabold">{t.brain.title}</h2>
         <p className="max-w-sm text-gray-500">{t.brain.locked}</p>
       </section>
@@ -52,7 +51,7 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
   return (
     <section className="card">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-lg font-extrabold">🧠 {t.brain.title}</h2>
+        <h2 className="flex items-center gap-2 text-lg font-extrabold"><Brain className="h-5 w-5 shrink-0 text-brand-500" aria-hidden /> {t.brain.title}</h2>
         <p className="text-xs text-gray-500">{t.brain.tapHint}</p>
       </div>
 
@@ -74,7 +73,7 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
                   y1={ya}
                   x2={COLUMNS.layer2}
                   y2={yb}
-                  stroke="#6366f1"
+                  stroke="#3e5080"
                   strokeOpacity={0.03 + 0.12 * layer1[i] * layer2[j]}
                 />
               )),
@@ -87,7 +86,7 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
                   y1={ya}
                   x2={COLUMNS.answer}
                   y2={yb}
-                  stroke="#6366f1"
+                  stroke="#3e5080"
                   strokeOpacity={0.03 + 0.2 * layer2[i] * answer[j]}
                 />
               )),
@@ -99,7 +98,7 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
                 y1={H / 2}
                 x2={COLUMNS.layer1}
                 y2={y}
-                stroke="#6366f1"
+                stroke="#3e5080"
                 strokeOpacity={0.06 + 0.15 * layer1[i]}
               />
             ))}
@@ -145,7 +144,7 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
                 cy={y}
                 r={9}
                 fill={bulbColor(layer1[i])}
-                stroke="#6366f1"
+                stroke="#3e5080"
                 strokeWidth="1.5"
                 className="transition-[fill] duration-300 hover:stroke-[3px]"
               />
@@ -169,7 +168,7 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
                 cy={y}
                 r={9}
                 fill={bulbColor(layer2[i])}
-                stroke="#a5b4fc"
+                stroke="#6e7fa6"
                 strokeWidth="1.5"
                 className="transition-[fill] duration-300"
               />
@@ -191,8 +190,8 @@ export function BrainView({ prediction, pixels, locked, showNumbers, onBulbClick
                   cx={COLUMNS.answer}
                   cy={y}
                   r={12}
-                  fill={best ? "#4f46e5" : bulbColor(answer[d])}
-                  stroke="#4f46e5"
+                  fill={best ? "#22315a" : bulbColor(answer[d])}
+                  stroke="#22315a"
                   strokeWidth="1.5"
                   className="transition-[fill] duration-300"
                 />

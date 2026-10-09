@@ -1,3 +1,4 @@
+import { Target } from "lucide-react";
 import { format, useI18n } from "../../i18n";
 import { STEPS, stepIndex, type StepId } from "../../missions/digitIsland";
 import { Robot, type Mood } from "./Robot";
@@ -29,7 +30,7 @@ export function GuidePanel({ step, values, mood, progress }: Props) {
       {step !== "done" && (
         <div className="mt-4 rounded-2xl border border-dashed border-brand-100 px-4 py-3">
           <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wide text-brand-600">
-            <span>🎯 {t.mission.goal}</span>
+            <span className="flex items-center gap-1"><Target className="h-3.5 w-3.5" aria-hidden /> {t.mission.goal}</span>
             <span className="text-gray-400">
               {format(t.mission.stepOf, { n: Math.min(index + 1, total), total })}
             </span>

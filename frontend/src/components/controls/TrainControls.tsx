@@ -1,3 +1,4 @@
+import { Pause, Play, RotateCcw, SkipForward, Zap } from "lucide-react";
 import { useI18n } from "../../i18n";
 
 export type ControlHint = "train" | "break" | "reset" | null;
@@ -25,7 +26,7 @@ export function TrainControls(props: Props) {
     <div className="flex flex-wrap items-center gap-2">
       {running ? (
         <button type="button" className="btn-primary min-w-32 text-base" onClick={props.onPause}>
-          ⏸ {t.controls.pause}
+          <Pause className="h-4 w-4" aria-hidden /> {t.controls.pause}
         </button>
       ) : (
         <button
@@ -34,7 +35,7 @@ export function TrainControls(props: Props) {
           onClick={props.onPlay}
           disabled={disabled || exploded}
         >
-          ▶ {t.controls.train}
+          <Play className="h-4 w-4" aria-hidden /> {t.controls.train}
         </button>
       )}
       <button
@@ -43,7 +44,7 @@ export function TrainControls(props: Props) {
         onClick={props.onStep}
         disabled={disabled || running || exploded}
       >
-        ⏭ {t.controls.step}
+        <SkipForward className="h-4 w-4" aria-hidden /> {t.controls.step}
       </button>
       <button
         type="button"
@@ -51,7 +52,7 @@ export function TrainControls(props: Props) {
         onClick={props.onBreak}
         disabled={disabled || exploded}
       >
-        💥 {t.controls.breakIt}
+        <Zap className="h-4 w-4" aria-hidden /> {t.controls.breakIt}
       </button>
       <button
         type="button"
@@ -59,7 +60,7 @@ export function TrainControls(props: Props) {
         onClick={props.onReset}
         disabled={disabled}
       >
-        ↺ {t.controls.reset}
+        <RotateCcw className="h-4 w-4" aria-hidden /> {t.controls.reset}
       </button>
     </div>
   );

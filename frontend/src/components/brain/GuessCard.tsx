@@ -1,3 +1,4 @@
+import { MessageCircle } from "lucide-react";
 import { format, useI18n } from "../../i18n";
 import type { Prediction } from "../../lib/types";
 import { AnswerBars } from "./AnswerBars";
@@ -13,7 +14,7 @@ export function GuessCard({ prediction, showNumbers }: Props) {
 
   return (
     <section className="card flex flex-col gap-3">
-      <h2 className="text-lg font-extrabold">💭 {t.guess.title}</h2>
+      <h2 className="flex items-center gap-2 text-lg font-extrabold"><MessageCircle className="h-5 w-5 shrink-0 text-brand-500" aria-hidden /> {t.guess.title}</h2>
       {prediction ? (
         <>
           <div key={prediction.prediction} className="flex animate-pop items-center gap-4">

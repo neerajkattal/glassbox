@@ -1,3 +1,4 @@
+import { History } from "lucide-react";
 import { useI18n } from "../../i18n";
 
 export interface FeedItem {
@@ -17,7 +18,7 @@ export function WhatHappened({ items }: Props) {
   const { t } = useI18n();
   return (
     <section className="card" aria-live="polite">
-      <h2 className="text-lg font-extrabold">📜 {t.feed.title}</h2>
+      <h2 className="flex items-center gap-2 text-lg font-extrabold"><History className="h-5 w-5 shrink-0 text-brand-500" aria-hidden /> {t.feed.title}</h2>
       {items.length === 0 ? (
         <p className="mt-2 text-sm text-gray-400">{t.feed.empty}</p>
       ) : (

@@ -1,3 +1,4 @@
+import { PlugZap } from "lucide-react";
 import { useI18n } from "../../i18n";
 
 interface Props {
@@ -26,9 +27,7 @@ export function StatusBanner({ failed, connecting, lost, onRetry }: Props) {
 
   return (
     <div className="card mb-4 flex flex-wrap items-center gap-3 border-2 border-rose-100" role="alert">
-      <span className="text-2xl" aria-hidden>
-        🔌
-      </span>
+      <PlugZap className="h-6 w-6 shrink-0 text-rose-500" aria-hidden />
       <p className="flex-1 font-bold text-rose-700">{failed ? t.status.offline : t.status.reconnecting}</p>
       <button type="button" className="btn-primary" onClick={onRetry}>
         {t.status.retry}

@@ -1,3 +1,4 @@
+import { Annoyed, CircleHelp, Laugh, Meh, Ruler, Smile, type LucideIcon } from "lucide-react";
 import { useI18n } from "../../i18n";
 import type { Snapshot } from "../../lib/types";
 
@@ -17,12 +18,12 @@ export function levelFor(snapshot: Snapshot | null): Level {
   return "clueless";
 }
 
-const EMOJI: Record<Level, string> = {
-  clueless: "🤷",
-  learning: "🤔",
-  good: "🙂",
-  great: "🤩",
-  exploded: "😵",
+const FACE: Record<Level, { Icon: LucideIcon; color: string }> = {
+  clueless: { Icon: CircleHelp, color: "text-gray-400" },
+  learning: { Icon: Meh, color: "text-amber-500" },
+  good: { Icon: Smile, color: "text-emerald-500" },
+  great: { Icon: Laugh, color: "text-emerald-600" },
+  exploded: { Icon: Annoyed, color: "text-rose-500" },
 };
 
 /**
@@ -38,10 +39,11 @@ export function WrongMeter({ snapshot, showNumbers }: Props) {
   return (
     <section className="card flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-extrabold">📏 {t.meter.title}</h2>
-        <span className="text-2xl" aria-hidden>
-          {EMOJI[level]}
-        </span>
+        <h2 className="flex items-center gap-2 text-lg font-extrabold"><Ruler className="h-5 w-5 shrink-0 text-brand-500" aria-hidden /> {t.meter.title}</h2>
+        {(() => {
+          const { Icon, color } = FACE[level];
+          return <Icon className={`h-7 w-7 ${color}`} aria-hidden />;
+        })()}
       </div>
       <div
         className="h-5 overflow-hidden rounded-full bg-gray-100"
