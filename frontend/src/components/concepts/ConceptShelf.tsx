@@ -18,9 +18,13 @@ export function ConceptShelf({ concepts, onOpen }: Props) {
           key={c}
           type="button"
           onClick={() => onOpen(c)}
-          className="rounded-full bg-white px-3 py-1.5 text-sm font-bold text-brand-700 shadow-card transition hover:bg-brand-50"
+          className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-brand-700 shadow-card transition hover:bg-brand-50"
         >
-          {CONCEPT_MATH[c].emoji} {t.concepts[c].name}
+          {(() => {
+            const Icon = CONCEPT_MATH[c].icon;
+            return <Icon className="h-3.5 w-3.5" aria-hidden />;
+          })()}
+          {t.concepts[c].name}
         </button>
       ))}
     </div>

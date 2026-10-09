@@ -1,3 +1,5 @@
+import { Sparkles } from "lucide-react";
+
 import { useI18n } from "../../i18n";
 import type { ConceptId } from "../../missions/digitIsland";
 import { useDepth } from "../../state/depth";
@@ -18,11 +20,11 @@ export function ConceptCard({ concept, onClose }: Props) {
 
   return (
     <Modal onClose={onClose} label={copy.name}>
-      <p className="text-xs font-extrabold uppercase tracking-wider text-brand-600">
-        🎉 {t.concepts.discovered}
+      <p className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-amber-600">
+        <Sparkles className="h-3.5 w-3.5" aria-hidden /> {t.concepts.discovered}
       </p>
       <h2 className="mt-1 flex items-center gap-2 text-2xl font-extrabold">
-        <span aria-hidden>{math.emoji}</span> {copy.name}
+        <math.icon className="h-6 w-6 text-brand-500" aria-hidden /> {copy.name}
       </h2>
       <p className="mt-3 text-[15px] leading-relaxed text-gray-700">{copy.story}</p>
 

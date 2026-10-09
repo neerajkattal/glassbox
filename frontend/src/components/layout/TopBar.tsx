@@ -1,3 +1,5 @@
+import { Eye, MapPin, Sigma, Wrench, type LucideIcon } from "lucide-react";
+
 import { LANGUAGES, useI18n, type Language } from "../../i18n";
 import { DEPTHS, useDepth, type Depth } from "../../state/depth";
 import { Robot } from "../guide/Robot";
@@ -9,7 +11,7 @@ interface Props {
   showDepth: boolean;
 }
 
-const DEPTH_ICON: Record<Depth, string> = { story: "👀", tinker: "🔧", math: "🧮" };
+const DEPTH_ICON: Record<Depth, LucideIcon> = { story: Eye, tinker: Wrench, math: Sigma };
 
 export function TopBar({ title, onHome, showDepth }: Props) {
   const { t, lang, setLang } = useI18n();
@@ -26,8 +28,8 @@ export function TopBar({ title, onHome, showDepth }: Props) {
           </span>
         </button>
         {title && (
-          <span className="hidden rounded-full bg-white px-3 py-1 text-sm font-bold text-brand-700 shadow-card sm:inline">
-            🏝️ {title}
+          <span className="hidden items-center gap-1.5 rounded-full bg-white px-3 py-1 text-sm font-bold text-brand-700 shadow-card sm:inline-flex">
+            <MapPin className="h-3.5 w-3.5 text-amber-500" aria-hidden /> {title}
           </span>
         )}
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
@@ -36,12 +38,16 @@ export function TopBar({ title, onHome, showDepth }: Props) {
               label={t.nav.depth}
               value={depth}
               onChange={setDepth}
-              options={DEPTHS.map((d) => ({
-                value: d,
-                label: `${DEPTH_ICON[d]} ${t.depth[d]}`,
-                short: DEPTH_ICON[d],
-                title: hints[d],
-              }))}
+              options={DEPTHS.map((d) => {
+                const Icon = DEPTH_ICON[d];
+                return {
+                  value: d,
+                  label: t.depth[d],
+                  icon: <Icon className="h-4 w-4" aria-hidden />,
+                  short: <Icon className="h-4 w-4" aria-hidden />,
+                  title: hints[d],
+                };
+              })}
             />
           )}
           <Segmented<Language>
