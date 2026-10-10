@@ -28,10 +28,28 @@ export const en = {
     continue: "Continue Digit Island",
     howTitle: "How it works",
     how: [
-      { emoji: "🎮", title: "Play", body: "Draw a number and teach the robot to read it." },
-      { emoji: "👀", title: "Notice", body: "Watch its brain light up and its mistakes shrink." },
-      { emoji: "🏷️", title: "Name it", body: "Only then do you learn the real name for what you saw." },
+      { title: "Play", body: "Draw a number and teach the robot to read it." },
+      { title: "Notice", body: "Watch its brain light up and its mistakes shrink." },
+      { title: "Name it", body: "Only then do you learn the real name for what you saw." },
     ],
+    hood: {
+      title: "A glass box, not a black box",
+      points: [
+        {
+          title: "Built from scratch",
+          body: "The neural network engine is written in NumPy, with no PyTorch, so every number on screen traces back to code you can read.",
+        },
+        {
+          title: "Trains live",
+          body: "Training runs on the server and streams every step to your browser over a WebSocket.",
+        },
+        {
+          title: "Tested properly",
+          body: "68 automated tests, continuous integration and written architecture decisions.",
+        },
+      ],
+      code: "View the code on GitHub",
+    },
     mapTitle: "Your learning map",
     comingSoon: "Coming soon",
     completed: "Completed",
@@ -54,7 +72,7 @@ export const en = {
   },
   steps: {
     meet: {
-      say: "Hi! I'm Bit 🤖 I want to learn to read handwritten numbers. Draw any digit from 0 to 9 and press “Ask Bit”.",
+      say: "Hi! I'm Bit. I want to learn to read handwritten numbers. Draw any digit from 0 to 9 and press “Ask Bit”.",
       goal: "Draw a digit and ask Bit",
     },
     train: {
@@ -70,11 +88,11 @@ export const en = {
       goal: "Tap a bulb in layer 1",
     },
     break: {
-      say: "Now the fun part: what if I try to learn way too fast? Press 💥 Break it and watch what happens.",
+      say: "Now the fun part: what if I try to learn way too fast? Press “Break it!” and watch what happens.",
       goal: "Press Break it",
     },
     fix: {
-      say: "Whoa, I'm dizzy! 😵 My steps were so big I jumped right over the answer. Press ↺ Reset to give me a fresh brain.",
+      say: "Whoa, I'm dizzy! My steps were so big I jumped right over the answer. Press “Reset” to give me a fresh brain.",
       goal: "Reset Bit",
     },
     final: {
@@ -82,7 +100,7 @@ export const en = {
       goal: "Reach 90% correct",
     },
     done: {
-      say: "You did it! You trained a real neural network and you know what's happening inside it. 🎉",
+      say: "You did it! You trained a real neural network and you know what's happening inside it.",
       goal: "Island complete",
     },
   },
@@ -149,8 +167,8 @@ export const en = {
     empty: "Whatever you do will be explained here in plain words.",
     awake: "Bit is awake with a random brain.",
     trained: "Bit practised on {count} examples. Its mistakes went {direction}.",
-    down: "down 📉",
-    up: "up 📈",
+    down: "down ↓",
+    up: "up ↑",
     paused: "Paused after {steps} steps.",
     guessed: "You showed Bit a drawing. It guessed {digit}.",
     stepped: "Bit took exactly one small step downhill.",
@@ -191,8 +209,8 @@ export const en = {
   },
   status: {
     waking: "Waking Bit up…",
-    firstTime: "The very first time can take a few seconds while 60,000 handwritten digits download.",
-    offline: "Can't reach Bit's server. Is the backend running on port 8000?",
+    firstTime: "Bit lives on a free server that naps when nobody is around, so the first visit can take up to a minute.",
+    offline: "Can't reach Bit's server right now. It may still be waking up.",
     retry: "Try again",
     reconnecting: "Connection lost — reconnecting…",
   },

@@ -27,10 +27,28 @@ export const hinglish: Messages = {
     continue: "Digit Island continue karo",
     howTitle: "Kaise kaam karta hai",
     how: [
-      { emoji: "🎮", title: "Khelo", body: "Ek number draw karo aur robot ko padhna sikhao." },
-      { emoji: "👀", title: "Dekho", body: "Uska dimaag jalte hue aur galtiyan kam hote hue dekho." },
-      { emoji: "🏷️", title: "Naam jaano", body: "Jo dekha, uska asli naam baad mein pata chalta hai." },
+      { title: "Khelo", body: "Ek number draw karo aur robot ko padhna sikhao." },
+      { title: "Dekho", body: "Uska dimaag jalte hue aur galtiyan kam hote hue dekho." },
+      { title: "Naam jaano", body: "Jo dekha, uska asli naam baad mein pata chalta hai." },
     ],
+    hood: {
+      title: "Black box nahi, glass box",
+      points: [
+        {
+          title: "Shuru se banaya",
+          body: "Neural network engine NumPy mein khud likha hai, PyTorch nahi. Screen ka har number padhne layak code se aata hai.",
+        },
+        {
+          title: "Live training",
+          body: "Training server pe hoti hai aur har step WebSocket se seedha tumhare browser mein aata hai.",
+        },
+        {
+          title: "Achhe se tested",
+          body: "68 automated tests, continuous integration aur likhe hue architecture decisions.",
+        },
+      ],
+      code: "GitHub pe code dekho",
+    },
     mapTitle: "Tumhara learning map",
     comingSoon: "Jald aa raha hai",
     completed: "Pura hua",
@@ -53,7 +71,7 @@ export const hinglish: Messages = {
   },
   steps: {
     meet: {
-      say: "Namaste! Main Bit hoon 🤖 Mujhe haath se likhe numbers padhna seekhna hai. 0 se 9 tak koi bhi digit draw karo aur “Bit se pucho” dabao.",
+      say: "Namaste! Main Bit hoon. Mujhe haath se likhe numbers padhna seekhna hai. 0 se 9 tak koi bhi digit draw karo aur “Bit se pucho” dabao.",
       goal: "Digit draw karo aur Bit se pucho",
     },
     train: {
@@ -69,11 +87,11 @@ export const hinglish: Messages = {
       goal: "Layer 1 ka ek bulb tap karo",
     },
     break: {
-      say: "Ab mazedaar part: agar main bahut zyada tez seekhne ki koshish karun toh? 💥 Tod do dabao aur dekho kya hota hai.",
+      say: "Ab mazedaar part: agar main bahut zyada tez seekhne ki koshish karun toh? “Tod do!” dabao aur dekho kya hota hai.",
       goal: "Tod do dabao",
     },
     fix: {
-      say: "Arre, mujhe chakkar aa rahe hain! 😵 Mere steps itne bade the ki main answer ke upar se kood gaya. ↺ Reset dabao aur mujhe naya dimaag do.",
+      say: "Arre, mujhe chakkar aa rahe hain! Mere steps itne bade the ki main answer ke upar se kood gaya. “Reset” dabao aur mujhe naya dimaag do.",
       goal: "Bit ko reset karo",
     },
     final: {
@@ -81,7 +99,7 @@ export const hinglish: Messages = {
       goal: "90% sahi tak pahuncho",
     },
     done: {
-      say: "Tumne kar dikhaya! Tumne ek asli neural network train kiya aur samjha ki andar kya ho raha hai. 🎉",
+      say: "Tumne kar dikhaya! Tumne ek asli neural network train kiya aur samjha ki andar kya ho raha hai.",
       goal: "Island pura hua",
     },
   },
@@ -148,8 +166,8 @@ export const hinglish: Messages = {
     empty: "Tum jo bhi karoge, yahan simple shabdon mein samjhaya jayega.",
     awake: "Bit jaag gaya hai, random dimaag ke saath.",
     trained: "Bit ne {count} examples pe practice ki. Galtiyan {direction}.",
-    down: "kam huin 📉",
-    up: "badh gayin 📈",
+    down: "kam huin ↓",
+    up: "badh gayin ↑",
     paused: "{steps} steps ke baad ruka.",
     guessed: "Tumne Bit ko drawing dikhayi. Usne {digit} guess kiya.",
     stepped: "Bit ne neeche ki taraf bilkul ek chhota step liya.",
@@ -190,8 +208,8 @@ export const hinglish: Messages = {
   },
   status: {
     waking: "Bit ko jaga rahe hain…",
-    firstTime: "Pehli baar thode seconds lag sakte hain, 60,000 handwritten digits download ho rahe hain.",
-    offline: "Bit ke server tak nahi pahunch pa rahe. Kya backend port 8000 pe chal raha hai?",
+    firstTime: "Bit ek free server pe rehta hai jo khaali hone pe so jaata hai, isliye pehli baar ek minute tak lag sakta hai.",
+    offline: "Abhi Bit ke server tak nahi pahunch pa rahe. Shayad woh abhi jaag raha hai.",
     retry: "Phir try karo",
     reconnecting: "Connection toot gaya — dobara jod rahe hain…",
   },

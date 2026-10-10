@@ -1,14 +1,28 @@
+import {
+  ArrowLeftRight,
+  CircleCheck,
+  CloudFog,
+  Hash,
+  Highlighter,
+  Landmark,
+  Lock,
+  MessageSquareText,
+  Mountain,
+  Play,
+  Sparkles,
+} from "lucide-react";
+
 import { useI18n } from "../../i18n";
 
 const ISLANDS = [
-  { id: "digit", emoji: "🔢", color: "from-amber-100 to-amber-50" },
-  { id: "downhill", emoji: "⛰️", color: "from-emerald-100 to-emerald-50" },
-  { id: "blame", emoji: "🌉", color: "from-sky-100 to-sky-50" },
-  { id: "words", emoji: "🏙️", color: "from-violet-100 to-violet-50" },
-  { id: "highlighter", emoji: "🖍️", color: "from-pink-100 to-pink-50" },
-  { id: "memory", emoji: "🏛️", color: "from-orange-100 to-orange-50" },
-  { id: "surprise", emoji: "😲", color: "from-teal-100 to-teal-50" },
-  { id: "noise", emoji: "🌫️", color: "from-slate-100 to-slate-50" },
+  { id: "digit", icon: Hash },
+  { id: "downhill", icon: Mountain },
+  { id: "blame", icon: ArrowLeftRight },
+  { id: "words", icon: MessageSquareText },
+  { id: "highlighter", icon: Highlighter },
+  { id: "memory", icon: Landmark },
+  { id: "surprise", icon: Sparkles },
+  { id: "noise", icon: CloudFog },
 ] as const;
 
 interface Props {
@@ -24,38 +38,44 @@ export function WorldMap({ digitDone, onOpenDigit }: Props) {
       {ISLANDS.map((island, i) => {
         const copy = t.home.islands[island.id];
         const available = island.id === "digit";
-        const badge = available
-          ? digitDone
-            ? `✅ ${t.home.completed}`
-            : `▶ ${t.home.inProgress}`
-          : `🔒 ${t.home.comingSoon}`;
+        const BadgeIcon = available ? (digitDone ? CircleCheck : Play) : Lock;
+        const badgeText = available ? (digitDone ? t.home.completed : t.home.inProgress) : t.home.comingSoon;
+        const Icon = island.icon;
         const body = (
           <>
             <div className="flex items-center justify-between">
-              <span className="text-3xl" aria-hidden>
-                {island.emoji}
+              <span
+                className={`grid h-10 w-10 place-items-center rounded-xl ${
+                  available ? "bg-amber-100 text-amber-700" : "bg-brand-50 text-brand-400"
+                }`}
+                aria-hidden
+              >
+                <Icon className="h-5 w-5" />
               </span>
               <span className="text-xs font-extrabold text-gray-400">{String(i + 1).padStart(2, "0")}</span>
             </div>
             <h3 className="mt-2 text-lg font-extrabold">{copy.name}</h3>
             <p className="mt-1 text-sm leading-snug text-gray-600">{copy.blurb}</p>
             <span
-              className={`mt-3 inline-block rounded-full px-2.5 py-1 text-xs font-bold ${
-                available ? "bg-brand-600 text-white" : "bg-white/70 text-gray-500"
+              className={`mt-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${
+                available ? "bg-brand-600 text-white" : "bg-brand-50 text-gray-500"
               }`}
             >
-              {badge}
+              <BadgeIcon className="h-3 w-3" aria-hidden />
+              {badgeText}
             </span>
           </>
         );
-        const classes = `block h-full rounded-3xl bg-gradient-to-br ${island.color} p-4 text-left`;
+        const classes = `block h-full rounded-3xl border p-4 text-left ${
+          available ? "border-amber-300 bg-white" : "border-brand-100 bg-white/60"
+        }`;
         return (
           <li key={island.id}>
             {available ? (
               <button
                 type="button"
                 onClick={onOpenDigit}
-                className={`${classes} w-full shadow-card ring-2 ring-brand-500 transition hover:-translate-y-0.5`}
+                className={`${classes} w-full shadow-card ring-2 ring-amber-300 transition hover:-translate-y-0.5`}
               >
                 {body}
               </button>
