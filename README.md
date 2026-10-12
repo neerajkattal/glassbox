@@ -2,6 +2,9 @@
 
 **Teach a robot. Watch its brain.**
 
+**Live demo: [glassbox-neeraj.vercel.app](https://glassbox-neeraj.vercel.app)**
+(the API runs on a free server that sleeps when idle, so the first visit can take up to a minute)
+
 Glassbox is an interactive, beginner-first playground for understanding how
 neural networks learn. Instead of starting with formulas, you draw a digit,
 train a small network to read it, look inside its "brain", break it on
@@ -80,6 +83,22 @@ make build      # production frontend build
 
 Configuration is read from `GLASSBOX_*` environment variables — see
 [`backend/.env.example`](backend/.env.example).
+
+## Deployment
+
+The live demo is split across two free hosts:
+
+- **Frontend** on Vercel: a static Vite build. `VITE_API_URL` is set at build
+  time to the API's address, and the REST client and the WebSocket both use it.
+- **API** on Render (Python web service, root `backend/`):
+  - build: `pip install -r requirements.txt && python -m glassbox.data.mnist .data/mnist`
+    (MNIST is downloaded once at build time, not on the first visit)
+  - start: `uvicorn glassbox.api.main:app --host 0.0.0.0 --port $PORT`
+  - health check: `/api/health`
+  - `GLASSBOX_CORS_ORIGINS` lists the frontend's address as a JSON array.
+
+Training sessions live in the API process's memory, so the API needs a
+long-running server with WebSocket support rather than serverless functions.
 
 ## Project structure
 
