@@ -28,10 +28,10 @@ Glassbox fixes this with three ideas:
 3. **Built from scratch.** The network runs on a small NumPy autograd engine,
    so every number on screen traces back to readable code.
 
-## Digit Island
+## The mission
 
-The first island follows the classic 784 → 16 → 16 → 10 network for
-handwritten digits. Bit the robot guides you through seven steps:
+You teach the classic 784 → 16 → 16 → 10 network to read handwritten
+digits. Bit the robot guides you through seven steps:
 
 | Step | You do | You discover |
 |---|---|---|
@@ -110,21 +110,14 @@ backend/
   glassbox/api/        FastAPI app: REST + WebSocket training stream
   tests/               pytest suite (engine, data, sessions, API, stream)
 frontend/
-  src/pages/           Home and Digit Island
+  src/pages/           Home and the training mission
   src/missions/        mission state machine (pure, unit-tested)
   src/components/      guide, drawing pad, brain view, meter, chart, concept cards…
   src/i18n/            English + Hinglish copy
 docs/
   ARCHITECTURE.md      how the pieces fit together
-  ROADMAP.md           the islands still to come
   decisions/           architecture decision records
 ```
-
-## Roadmap
-
-Digit Island is the first of eight islands — next up are gradient descent,
-backpropagation, a tiny GPT, attention, how models store facts,
-cross-entropy and diffusion. See [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## License
 

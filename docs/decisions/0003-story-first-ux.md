@@ -22,6 +22,6 @@ formula, without boring someone preparing for an interview.
 
 ## Consequences
 
-- Copy matters as much as code; every new island needs both languages.
+- Copy matters as much as code; every new screen needs both languages.
 - Missions are pure state machines (`frontend/src/missions`) so the teaching
   flow is unit-tested independently of the UI.

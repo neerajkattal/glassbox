@@ -20,7 +20,6 @@ finite-difference gradient checks in the test suite.
 
 - The whole engine is a few hundred lines and fits in a learner's head.
 - The Math mode can show the exact line of code behind each concept.
-- It is slower than a real framework. The Digit Island network
-  (784-16-16-10) trains at about 0.15 ms per step on a laptop, which is more
-  than fast enough. Future islands (a tiny transformer) may need batching
-  care but should stay within reach.
+- It is slower than a real framework. The 784-16-16-10 digit network trains
+  at about 0.15 ms per step on a laptop, which is more than fast enough for a
+  network this size; much larger models would need a real framework.

@@ -71,7 +71,7 @@ Interactive docs are served at `/docs` while the API is running.
 
 | Area | Files |
 |---|---|
-| Pages | `pages/HomePage.tsx` (hero, how-it-works, learning map), `pages/DigitIsland.tsx` (the mission) |
+| Pages | `pages/HomePage.tsx` (hero, how it works, under the hood), `pages/DigitIsland.tsx` (the mission) |
 | Mission logic | `missions/digitIsland.ts` — a pure state machine: `advance(step, event)` returns the next step and any concept to reveal |
 | Live data | `hooks/useSession.ts`, `hooks/useTraining.ts` (WebSocket + history), `lib/trainingSocket.ts` |
 | Drawing | `components/draw/DrawPad.tsx`, `lib/preprocess.ts` (crop, scale to 20 px, centre by mass in 28×28 — the MNIST recipe) |
