@@ -1,7 +1,6 @@
-import { ArrowRight, Cpu, Eye, FlaskConical, Gamepad2, Github, Map, Radio, Tag } from "lucide-react";
+import { ArrowRight, Cpu, Eye, FlaskConical, Gamepad2, Github, Radio, Tag } from "lucide-react";
 
 import { Robot } from "../components/guide/Robot";
-import { WorldMap } from "../components/map/WorldMap";
 import { useI18n } from "../i18n";
 
 const HOW_ICONS = [Gamepad2, Eye, Tag];
@@ -10,11 +9,10 @@ const REPO_URL = "https://github.com/neerajkattal/glassbox";
 
 interface Props {
   started: boolean;
-  digitDone: boolean;
   onStart: () => void;
 }
 
-export function HomePage({ started, digitDone, onStart }: Props) {
+export function HomePage({ started, onStart }: Props) {
   const { t } = useI18n();
   return (
     <main className="mx-auto max-w-6xl px-4 pb-16">
@@ -89,14 +87,6 @@ export function HomePage({ started, digitDone, onStart }: Props) {
         </ul>
       </section>
 
-      <section aria-labelledby="map" className="mt-10">
-        <h2 id="map" className="flex items-center gap-2 text-xl font-extrabold">
-          <Map className="h-5 w-5 text-brand-500" aria-hidden /> {t.home.mapTitle}
-        </h2>
-        <div className="mt-3">
-          <WorldMap digitDone={digitDone} onOpenDigit={onStart} />
-        </div>
-      </section>
     </main>
   );
 }

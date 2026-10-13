@@ -8,7 +8,7 @@ export const en = {
     tagline: "Teach a robot. Watch its brain.",
   },
   nav: {
-    map: "Map",
+    map: "Home",
     language: "Language",
     depth: "How deep?",
   },
@@ -24,8 +24,8 @@ export const en = {
     title: "Learn how AI learns, by teaching one yourself.",
     subtitle:
       "No maths needed to start. Draw, train and even break a tiny robot brain — then find out what the big words mean.",
-    start: "Start Digit Island",
-    continue: "Continue Digit Island",
+    start: "Start teaching Bit",
+    continue: "Continue teaching Bit",
     howTitle: "How it works",
     how: [
       { title: "Play", body: "Draw a number and teach the robot to read it." },
@@ -50,23 +50,9 @@ export const en = {
       ],
       code: "View the code on GitHub",
     },
-    mapTitle: "Your learning map",
-    comingSoon: "Coming soon",
-    completed: "Completed",
-    inProgress: "Start here",
-    islands: {
-      digit: { name: "Digit Island", blurb: "What is a neural network? Train one to read handwriting." },
-      downhill: { name: "Downhill Valley", blurb: "Gradient descent: how a robot finds the bottom of a valley blindfolded." },
-      blame: { name: "Blame Bridge", blurb: "Backpropagation: passing the blame back through the team." },
-      words: { name: "Word City", blurb: "How a tiny GPT guesses the next word." },
-      highlighter: { name: "Highlighter Tower", blurb: "Attention: words highlighting the words they need." },
-      memory: { name: "Memory Palace", blurb: "Where a language model keeps its facts." },
-      surprise: { name: "Surprise Lake", blurb: "Cross-entropy: measuring how surprised a model is." },
-      noise: { name: "Noise Lake", blurb: "Diffusion: turning static into a picture." },
-    },
   },
   mission: {
-    title: "Digit Island",
+    title: "Teach Bit to read",
     stepOf: "Step {n} of {total}",
     goal: "Your goal",
   },
@@ -101,7 +87,7 @@ export const en = {
     },
     done: {
       say: "You did it! You trained a real neural network and you know what's happening inside it.",
-      goal: "Island complete",
+      goal: "Mission complete",
     },
   },
   draw: {
@@ -215,12 +201,12 @@ export const en = {
     reconnecting: "Connection lost — reconnecting…",
   },
   done: {
-    title: "Digit Island complete!",
+    title: "Mission complete!",
     body: "You trained a neural network, looked inside its brain, broke it and fixed it. That's more than most people ever see.",
-    badge: "Digit Island badge earned",
-    next: "Next: Downhill Valley (coming soon)",
+    badge: "Digit reader badge earned",
+    next: "Try it again with a bigger or smaller learning rate, or switch to Math to see the formulas.",
     replay: "Play again",
-    map: "Back to map",
+    map: "Back to home",
   },
 };
 

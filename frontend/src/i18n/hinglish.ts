@@ -7,7 +7,7 @@ export const hinglish: Messages = {
     tagline: "Robot ko sikhao. Uska dimaag dekho.",
   },
   nav: {
-    map: "Map",
+    map: "Home",
     language: "Bhasha",
     depth: "Kitna deep?",
   },
@@ -23,8 +23,8 @@ export const hinglish: Messages = {
     title: "AI kaise seekhta hai — khud ek ko sikha ke samjho.",
     subtitle:
       "Shuru karne ke liye maths ki zarurat nahi. Ek chhote robot ka dimaag draw karo, train karo, tod bhi do — phir bade-bade words ka matlab samjho.",
-    start: "Digit Island shuru karo",
-    continue: "Digit Island continue karo",
+    start: "Bit ko sikhana shuru karo",
+    continue: "Bit ko sikhana jaari rakho",
     howTitle: "Kaise kaam karta hai",
     how: [
       { title: "Khelo", body: "Ek number draw karo aur robot ko padhna sikhao." },
@@ -49,23 +49,9 @@ export const hinglish: Messages = {
       ],
       code: "GitHub pe code dekho",
     },
-    mapTitle: "Tumhara learning map",
-    comingSoon: "Jald aa raha hai",
-    completed: "Pura hua",
-    inProgress: "Yahan se shuru",
-    islands: {
-      digit: { name: "Digit Island", blurb: "Neural network kya hai? Ek ko handwriting padhna sikhao." },
-      downhill: { name: "Downhill Valley", blurb: "Gradient descent: aankh band karke ghaati ke neeche kaise pahunche." },
-      blame: { name: "Blame Bridge", blurb: "Backpropagation: galti ka blame team mein peeche bhejna." },
-      words: { name: "Word City", blurb: "Ek chhota GPT agla word kaise guess karta hai." },
-      highlighter: { name: "Highlighter Tower", blurb: "Attention: words un words ko highlight karte hain jinki unhe zarurat hai." },
-      memory: { name: "Memory Palace", blurb: "Language model apne facts kahan rakhta hai." },
-      surprise: { name: "Surprise Lake", blurb: "Cross-entropy: model kitna surprise hua, yeh naapna." },
-      noise: { name: "Noise Lake", blurb: "Diffusion: static ko picture mein badalna." },
-    },
   },
   mission: {
-    title: "Digit Island",
+    title: "Bit ko padhna sikhao",
     stepOf: "Step {n} / {total}",
     goal: "Tumhara goal",
   },
@@ -100,7 +86,7 @@ export const hinglish: Messages = {
     },
     done: {
       say: "Tumne kar dikhaya! Tumne ek asli neural network train kiya aur samjha ki andar kya ho raha hai.",
-      goal: "Island pura hua",
+      goal: "Mission pura hua",
     },
   },
   draw: {
@@ -214,11 +200,11 @@ export const hinglish: Messages = {
     reconnecting: "Connection toot gaya — dobara jod rahe hain…",
   },
   done: {
-    title: "Digit Island pura hua!",
+    title: "Mission pura hua!",
     body: "Tumne ek neural network train kiya, uske dimaag ke andar dekha, use toda aur theek kiya. Zyadatar log itna kabhi nahi dekhte.",
-    badge: "Digit Island badge mila",
-    next: "Agla: Downhill Valley (jald aa raha hai)",
+    badge: "Digit reader badge mila",
+    next: "Learning rate badal ke phir try karo, ya formulas dekhne ke liye Math pe jao.",
     replay: "Phir se khelo",
-    map: "Map pe wapas",
+    map: "Home pe wapas",
   },
 };
